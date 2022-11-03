@@ -1,0 +1,117 @@
+#!/bin/sh
+
+# Don't change these
+PRG_NAME='booky'
+PRG_VERSION='0.1'
+
+# Set the location of your bookmarks and your
+# desired browser
+BROWSER='/bin/firefox-esr'
+BOOKMARKS="$HOME/.bookmarks"
+LINES='20'
+
+# Don't change this either
+URL=''
+
+_select_url() {
+    URL=`cat $BOOKMARKS | dmenu -i -b -l $LINES`
+}
+
+bookmark_open() {
+    _select_url
+
+    echo $URL
+
+    $BROWSER -new-tab $URL
+}
+
+bookmark_copy() {
+    _select_url
+
+    echo $URL | xclip -i 
+}
+
+bookmark_stats() {
+    echo "Bookmarks: `wc -l $BOOKMARKS | awk '{print $1}'`"
+}
+
+bookmark_add() {
+    # Only select the first part via awk
+    needle=`xclip -o | awk '{print $1}'`
+
+    # Does the string contain http*?
+    is_url=`echo $needle | grep -i '^http*'`
+    if test $? -eq 1; then
+        notify-send "Not a URL, aborting!"
+        exit 0
+    fi
+
+    # Check if the given URL is already in the list
+    ret=`grep -i $needle $BOOKMARKS`
+    if test $? -eq 0; then
+        notify-send "Bookmark already in list!"
+        exit 0
+    fi
+
+    notify-send "Bookmark added!"
+    echo $needle >> $BOOKMARKS
+}
+
+usage() {
+    echo "$PRG_NAME [-o|-c|-s]"
+    echo "\t-a  Add selected bookmark to list"
+    echo "\t-o  Select and open a URL in the browser"
+    echo "\t-c  Copy selected URL to clipboard"
+    echo "\t-s  Show statistics"
+    echo "\t-v  Show version number"
+
+    exit 0
+}
+
+version() {
+    echo "$PRG_NAME version $PRG_VERSION"
+
+    exit 0
+}
+
+check() {
+    # check if xclip is installed
+    ret_xclip=`which xclip`
+    if test $? -eq 1; then
+        echo "xclip is not installed, aborting!"
+        exit 1
+    fi
+
+    # check if dmenu is installed
+    ret_dmenu=`which dmenu`
+    if test $? -eq 1; then
+        echo "dmenu is not installed, aborting!"
+        exit 1
+    fi
+}
+
+main() {
+    ARG=$1
+
+    check
+
+    if test "$ARG" = ''; then
+        usage
+    fi
+
+    if test "$ARG" = '-o'; then
+        bookmark_open
+    elif test "$ARG" = '-a'; then
+        bookmark_add
+    elif test "$ARG" = '-c'; then
+        bookmark_copy
+    elif test "$ARG" = '-s'; then
+        bookmark_stats
+    elif test "$ARG" = '-v'; then
+        version
+    fi
+
+    exit 0
+}
+
+main $1
