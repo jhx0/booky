@@ -59,11 +59,11 @@ bookmark_add() {
 
 usage() {
     echo "$PRG_NAME [-o|-c|-s]"
-    echo "\t-a  Add selected bookmark to list"
-    echo "\t-o  Select and open a URL in the browser"
-    echo "\t-c  Copy selected URL to clipboard"
-    echo "\t-s  Show statistics"
-    echo "\t-v  Show version number"
+    echo "   -a  Add selected bookmark to list"
+    echo "   -o  Select and open a URL in the browser"
+    echo "   -c  Copy selected URL to clipboard"
+    echo "   -s  Show statistics"
+    echo "   -v  Show version number"
 
     exit 0
 }
