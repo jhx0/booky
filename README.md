@@ -1,6 +1,6 @@
 # booky
 
-booky is a very simple (KISS) and easily hackable bookmark manager writte in pure POSIX sh!
+booky is a very simple (KISS) and easily hackable bookmark manager written in pure POSIX sh!
 
 **Usage:**
 
