@@ -9,6 +9,7 @@ booky [-o|-c|-s]
         -a  Add selected bookmark to list
         -o  Select and open a URL in the browser
         -c  Copy selected URL to clipboard
+        -d  Dump all bookmarks to stdout
         -s  Show statistics
         -v  Show version number
 ```
