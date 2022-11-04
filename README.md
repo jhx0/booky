@@ -5,7 +5,7 @@ booky is a very simple (KISS) and easily hackable bookmark manager written in pu
 **Usage:**
 
 ```
-booky [-o|-c|-s]
+booky [-a|-o|-c|-d|-s|-v]
         -a  Add selected bookmark to list
         -o  Select and open a URL in the browser
         -c  Copy selected URL to clipboard
