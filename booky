@@ -62,7 +62,7 @@ bookmark_dump() {
 }
 
 usage() {
-    echo "$PRG_NAME [-o|-c|-s]"
+    echo "$PRG_NAME [-a|-o|-c|-d|-s|-v]"
     echo "   -a  Add selected bookmark to list"
     echo "   -o  Select and open a URL in the browser"
     echo "   -c  Copy selected URL to clipboard"
