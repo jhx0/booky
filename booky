@@ -57,11 +57,16 @@ bookmark_add() {
     echo $needle >> $BOOKMARKS
 }
 
+bookmark_dump() {
+    cat $BOOKMARKS
+}
+
 usage() {
     echo "$PRG_NAME [-o|-c|-s]"
     echo "   -a  Add selected bookmark to list"
     echo "   -o  Select and open a URL in the browser"
     echo "   -c  Copy selected URL to clipboard"
+    echo "   -d  Dump all bookmarks to stdout"
     echo "   -s  Show statistics"
     echo "   -v  Show version number"
 
@@ -105,6 +110,8 @@ main() {
         bookmark_add
     elif test "$ARG" = '-c'; then
         bookmark_copy
+    elif test "$ARG" = "-d"; then
+        bookmark_dump
     elif test "$ARG" = '-s'; then
         bookmark_stats
     elif test "$ARG" = '-v'; then
