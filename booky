@@ -93,6 +93,12 @@ check() {
         echo "dmenu is not installed, aborting!"
         exit 1
     fi
+
+    ret_notify=`which notify-send`
+    if test $? -eq 1; then
+        echo "notify-send not installed, aborting!"
+        exit 1
+    fi
 }
 
 main() {
