@@ -2,7 +2,7 @@
 
 # Don't change these
 PRG_NAME='booky'
-PRG_VERSION='0.1'
+PRG_VERSION='0.2'
 
 # Set the location of your bookmarks and your
 # desired browser
