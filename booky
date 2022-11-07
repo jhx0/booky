@@ -20,7 +20,10 @@ _select_url() {
 bookmark_open() {
     _select_url
 
-    echo $URL
+    # Exit if nothing is selected
+    if [ -z $URL ]; then
+        exit 0
+    fi
 
     $BROWSER -new-tab $URL
 }
