@@ -7,6 +7,7 @@ PRG_VERSION='0.3'
 # Set the location of your bookmarks and your
 # desired browser
 BROWSER='/bin/firefox-esr'
+BROWSER_OPT='-new-tab'
 BOOKMARKS="$HOME/.bookmarks"
 LINES='20'
 
@@ -25,7 +26,7 @@ bookmark_open() {
         exit 0
     fi
 
-    $BROWSER -new-tab $URL
+    $BROWSER $BROWSER_OPT $URL
 }
 
 bookmark_copy() {
